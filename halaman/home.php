@@ -1,29 +1,29 @@
-<div class="col-md-9">
-    <form action="" method="POST">
-        <?php for($i=1; $i<4; $i++): ?>
-        <div class="row">
-            <?php for($k=1; $k<5; $k++): ?>
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="img/produk.jpg">
-                    <div class="caption text-center">
-                        <h4>Nama Produk</h4>
-                        <p><a href="#" class="btn btn-primary" role="button">Order</a></p>
+<form action="" method="POST">
+    <div class="row">
+        <?php if($query = $koneksi->query("SELECT * FROM barang")): ?>
+            <?php while($barang = $query->fetch_array()): ?>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="barang/<?=$barang['gambar']?>" style="height: 190px; width: 250px;">
+                        <div class="caption text-center">
+                            <h4><?=ucwords($barang['nama_barang'])?></h4>
+                            <h5>
+                                Rp. <?=$barang['harga']?> ,-
+                                <div class="btn-group">
+                                    <button class="btn btn-default btn-xs" disabled="on">Stok</button>
+                                    <button class="btn btn-info btn-xs" disabled="on"><?=$barang['stok']?></button>
+                                </div>
+                            </h5>
+                            <p>
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-primary btn-sm" role="button">Order</a>
+                                    <a href="?halaman=detail_barang&id=<?=$barang['id_barang']?>" class="btn btn-info btn-sm" role="button">Detail</a>
+                                </div>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <?php endfor ?>
-        </div>
-        <?php endfor ?>
-    </form>
-</div>    
-<div class="col-md-3">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Daftar Order</h3>
-        </div>
-        <div class="panel-body">
-            Belum ada order...
-        </div>
+            <?php endwhile ?>
+        <?php endif ?>
     </div>
-</div>    
+</form>

@@ -1,6 +1,6 @@
-<?php 
+<?php
 if (isset($_POST['form']) AND $_POST['form'] == 'true') {
-    $sql = "INSERT INTO `merk` VALUES(NULL, '" . ucwords($_POST['nama_merk']) . "')";
+    $sql = "UPDATE `merk` SET nama_merk='" . ucwords($_POST['nama_merk']) . "' WHERE id_merk=$_POST[id_merk]";
     if ($koneksi->query($sql)) {
         echo "
             <script>
@@ -18,7 +18,7 @@ if (isset($_POST['form']) AND $_POST['form'] == 'true') {
     }
 }
 
-if (isset($_GET['action']) AND $_GET['action'] == 'delete') {
+if ($_GET['action'] === 'delete') {
     $koneksi->query("DELETE FROM `merk` WHERE id_merk=$_GET[id]");
     echo "
         <script>
@@ -29,16 +29,21 @@ if (isset($_GET['action']) AND $_GET['action'] == 'delete') {
 }
 ?>
 <div class="col-md-4">
-    <div class="panel panel-info">
-        <div class="panel-heading"><h3 class="text-center">TAMBAH MERK BARU</h3></div>
+    <div class="panel panel-warning">
+        <div class="panel-heading"><h3 class="text-center">UPDATE MERK</h3></div>
         <div class="panel-body">
             <form action="<?=$_SERVER['REQUEST_URI']?>" method="POST">
-                <div class="form-group">
-                    <label for="nama_merk">Nama Merk</label>
-                    <input type="text" name="nama_merk" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-info btn-block">Simpan</button>
-                <input type="hidden" name="form" value="true">
+                <?php if ($query = $koneksi->query("SELECT * FROM `merk` WHERE id_merk=$_GET[id]")): ?>
+                    <?php while ($merk = $query->fetch_array()): ?>
+                        <div class="form-group">
+                            <label for="nama_merk">Nama Merk</label>
+                            <input type="text" name="nama_merk" class="form-control" value="<?=$merk['nama_merk']?>">
+                        </div>
+                        <button type="submit" class="btn btn-warning btn-block">Update</button>
+                        <input type="hidden" name="form" value="true">
+                        <input type="hidden" name="id_merk" value="<?=$merk['id_merk']?>">
+                    <?php endwhile ?>
+                <?php endif ?>
             </form>
         </div>
     </div>

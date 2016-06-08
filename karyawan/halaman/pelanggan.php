@@ -13,15 +13,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php for($i=1; $i<6; $i++): ?>
+                <?php if ($query = $koneksi->query("SELECT * FROM pelanggan")): ?>
+                    <?php $no = 1; ?>
+                    <?php while($pelanggan = $query->fetch_assoc()): ?>
                     <tr>
-                        <td><?php echo $no++; ?></td>
-                        <td><?php echo "XXXXXXXX"; ?></td>
-                        <td><?php echo "XXXXXXXXXXX"; ?></td>
-                        <td><?php echo "XXXXXXXXX"; ?></td>
-                        <td><?php echo "XXXXXXXXXXXXXXX"; ?></td>
+                        <td><?=$no++?></td>
+                        <td><?=$pelanggan['nama']?></td>
+                        <td><?=$pelanggan['email']?></td>
+                        <td><?=$pelanggan['telpon']?></td>
+                        <td><?=$pelanggan['alamat']?></td>
                     </tr>
-                    <?php endfor ?>
+                    <?php endwhile ?>
+                <?php endif ?>
                 </tbody>
             </table>
         </div>

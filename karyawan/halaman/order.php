@@ -7,21 +7,31 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Pembeli</th>
-                        <th>Barang</th>
+                        <th>Tanggal Order</th>
+                        <th>Jatuh Tempo</th>
                         <th>Total Bayar</th>
-                        <th>Status</th>
+                        <th>Alamat Pengiriman</th>
+                        <th>Status Konfirmasi</th>
+                        <th>Status Kirim</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php for($i=0; $i<6; $i++): ?>
+                <?php $sql = "SELECT p.*, o.* FROM `order` o LEFT JOIN pelanggan p ON o.id_pelanggan=p.id_pelanggan" ?>
+                <?php if ($query = $koneksi->query($sql)): ?>
+                    <?php $no = 1; ?>
+                    <?php while($order = $query->fetch_assoc()): ?>
                     <tr>
-                        <td><?php echo $no++; ?></td>
-                        <td><?php echo "XXXXXXXX"; ?></td>
-                        <td><?php echo "XXXXXXXXXXX"; ?></td>
-                        <td><?php echo "Rp.XXX,XXX.XX,-"; ?></td>
-                        <td><span class="label label-warning">Belum Konfirmasi</span></td>
+                        <td><?=$no++?></td>
+                        <td><?=$order['nama']?></td>
+                        <td><?=$order['tgl_order']?></td>
+                        <td><?=$order['tgl_jatuh_tempo']?></td>
+                        <td>Rp.<?=$order['total_bayar']?>,-</td>
+                        <td><?=$order['alamat_pengiriman']?></td>
+                        <td><span class="label label-<?=($order['status_konfirmasi'] == 'sudah') ? 'success' : 'warning'?>"><?=($order['status_konfirmasi'] == 'sudah') ? 'Sudah' : 'Belum'?></span></td>
+                        <td><span class="label label-<?=($order['status_kirim'] == 'sudah') ? 'success' : 'warning'?>"><?=($order['status_kirim'] == 'sudah') ? 'Sudah' : 'Belum'?></span></td>
                     </tr>
-                    <?php endfor ?>
+                    <?php endwhile ?>
+                <?php endif ?>
                 </tbody>
             </table>
         </div>
