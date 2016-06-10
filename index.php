@@ -25,17 +25,6 @@ require_once "config.php";
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="?halaman=home">Home <span class="sr-only">(current)</span></a></li>
-                        <?php if (isset($_SESSION['is_pelanggan'])): ?>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Member Area<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="?halaman=order">Order</a></li>
-                                    <li><a href="?halaman=konfirmasi">Konfirmasi</a></li>
-                                    <!-- <li role="separator" class="divider"></li>
-                                    <li><a href="?halaman=profil">Profil</a></li> -->
-                                </ul>
-                            </li>
-                        <?php endif ?>
                         <?php if (!isset($_SESSION['is_pelanggan'])): ?>
                         <li><a href="?halaman=pendaftaran">Pendaftaran</a></li>
                         <?php endif ?>
@@ -57,23 +46,16 @@ require_once "config.php";
                     case 'detail_barang': $halaman = "detail_barang"; break;
                     case 'buku_tamu': $halaman = "buku_tamu"; break;
                     case 'pendaftaran': $halaman = "pendaftaran"; break;
-                    case 'order': $halaman = "order"; break;
+                    case 'detail_order': $halaman = "detail_order"; break;
+                    case 'checkout': $halaman = "checkout"; break;
+                    case 'selesai': $halaman = "selesai"; break;
                     case 'konfirmasi': $halaman = "konfirmasi"; break;
                     default: $halaman = "home"; break;
                 }
                 include "halaman/" . $halaman . ".php";
               ?>
             </div>
-             <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Daftar Order</h3>
-                    </div>
-                    <div class="panel-body">
-                        Belum ada order...
-                    </div>
-                </div>
-            </div>
+             <?php include "side_bar.php"; ?>
         </div>
     </div>
     <script src="js/jquery.min.js"></script>

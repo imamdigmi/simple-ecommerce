@@ -7,10 +7,16 @@ if (isset($_POST['_form']) AND $_POST['_form'] == 'true') {
             session_start();
             while ($data = $query->fetch_array()) {
                 $_SESSION['is_pelanggan'] = true;
+                $_SESSION['id_pelanggan'] = $data['id_pelanggan'];
                 $_SESSION['nama'] = $data['nama'];
                 $_SESSION['email'] = $data['email'];
             }
-            header('location: index.php');
+            if (isset($_GET['ref'])) {
+                $halaman = '?halaman=' . $_GET['ref'];
+            } else {
+                $halaman = '';
+            }
+            header('location: index.php' . $halaman);
         } else {
             echo "Email / Password tidak sesuai!";
         }
@@ -43,7 +49,7 @@ if (isset($_POST['_form']) AND $_POST['_form'] == 'true') {
                         <form action="<?=$_SERVER['REQUEST_URI']?>" method="POST">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+                                <input type="email" name="email" class="form-control" id="email" placeholder="Email" autofocus="on">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>

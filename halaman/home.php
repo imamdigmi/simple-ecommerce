@@ -16,7 +16,7 @@
                             </h5>
                             <p>
                                 <div class="btn-group">
-                                    <a href="#" class="btn btn-primary btn-sm" role="button">Order</a>
+                                    <a href="?action=add&id_barang=<?=$barang['id_barang']?>" class="btn btn-primary btn-sm" role="button">Order</a>
                                     <a href="?halaman=detail_barang&id=<?=$barang['id_barang']?>" class="btn btn-info btn-sm" role="button">Detail</a>
                                 </div>
                             </p>
