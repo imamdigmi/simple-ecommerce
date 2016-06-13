@@ -82,8 +82,8 @@ if (isset($_POST['_form']) AND $_POST['_form'] == 'true') {
             <button type="submit" class="btn btn-info btn-block">Checkout!</button>
             <input type="hidden" name="_form" value="true">
             <input type="hidden" name="_total" value="<?=$_GET['total']?>">
-            <input type="hidden" name="_tgl_order" value="<?=date('d-m-Y')?>">
-            <input type="hidden" name="_tgl_tempo_order" value="<?=date('d-m-Y', strtotime('+1 week'))?>">
+            <input type="hidden" name="_tgl_order" value="<?=date('Y-m-d')?>">
+            <input type="hidden" name="_tgl_tempo_order" value="<?=date('Y-m-d', strtotime('+1 week'))?>">
         </form>
     </div>
 </div>

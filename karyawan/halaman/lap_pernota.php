@@ -26,7 +26,7 @@
         <div class="panel-body">
         <?php if (isset($_POST['_form']) AND $_POST['_form'] == 'true'): ?>
             <table class="table table-condensed">
-                <?php $qry = $sql . "WHERE id_order=$_POST[id_order]"; ?>
+                <?php $qry = "SELECT p.*, o.* FROM `order` o LEFT JOIN pelanggan p ON o.id_pelanggan=p.id_pelanggan WHERE id_order=$_POST[id_order]"; ?>
                 <?php if ($query = $koneksi->query($qry)): ?>
                     <?php if ($query->num_rows): ?>
                         <?php while ($order = $query->fetch_assoc()): ?>
@@ -45,14 +45,14 @@
                                 </tr>
                                 <tr>
                                     <th>TANGGAL JATUH TEMPO</th>
-                                    <td><?=$order['tgl_jatuh_tempo']?></td>
+                                    <td><?=$order['tgl_tempo_order']?></td>
                                 </tr>
                                 <tr>
                                     <th>ALAMAT PENGIRIMAN</th>
                                     <td><?=$order['alamat_pengiriman']?></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4"><b>TOTAL</b></td>
+                                    <td><b>TOTAL</b></td>
                                     <td><b>Rp.<?=$order['total_bayar']?>,-</b></td>
                                 </tr>
                             </tbody>

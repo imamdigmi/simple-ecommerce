@@ -56,7 +56,7 @@ if (isset($_POST['_form']) AND $_POST['_form'] == 'true') {
                                 <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                             </div>
                             <button type="submit" class="btn btn-info btn-block">Login</button>
-                            <p class="text-center">Belum punya akun? <a href="?halaman=pendaftaran">Daftar</a></p>
+                            <p class="text-center">Belum punya akun? <a href="index.php?halaman=pendaftaran">Daftar</a></p>
                             <input type="hidden" name="_form" value="true">
                         </form>
                     </div>

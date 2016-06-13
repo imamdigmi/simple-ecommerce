@@ -48,6 +48,7 @@ if (!isset($_SESSION['is_karyawan'])) {
                             <ul class="dropdown-menu">
                                 <li><a href="?halaman=lap_pernota">Pernota</a></li>
                                 <li><a href="?halaman=lap_perperiode">Perperiode</a></li>
+                                <li><a href="?halaman=lap_status_order">Status Order</a></li>
                                 <li><a href="?halaman=lap_barang_permerk">Barang Permerk</a></li>
                             </ul>
                         </li>
@@ -102,6 +103,12 @@ if (!isset($_SESSION['is_karyawan'])) {
                 break;
                 case 'lap_barang_permerk':
                     $halaman = "lap_barang_permerk";
+                break;
+                case 'lap_status_order':
+                    $halaman = "lap_status_order";
+                break;
+                case 'bukti_pembayaran':
+                    $halaman = "bukti_pembayaran";
                 break;
                 default: $halaman = "home"; break;
             }

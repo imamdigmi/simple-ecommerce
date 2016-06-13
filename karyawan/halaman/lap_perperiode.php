@@ -1,18 +1,15 @@
 <div class="col-md-3">
     <div class="panel panel-info">
-        <div class="panel-heading"><h3 class="text-center">PILIH PERIODE</h3></div>
+        <div class="panel-heading"><h3 class="text-center">PERIODE</h3></div>
         <div class="panel-body">
             <form action="<?=$_SERVER['REQUEST_URI']?>" method="POST">
                 <div class="form-group">
-                    <label for="id_merk">PERIODE ORDER</label>
-                    <select name="id_order" class="form-control">
-                        <?php $sql = "SELECT p.*, o.* FROM `order` o LEFT JOIN pelanggan p ON o.id_pelanggan=p.id_pelanggan"; ?>
-                        <?php if ($query = $koneksi->query($sql)): ?>
-                            <?php while ($order = $query->fetch_assoc()): ?>
-                                <option value="<?=$order['id_order']?>"><?=$order['id_order']?> - <?=$order['nama']?></option>
-                            <?php endwhile ?>
-                        <?php endif ?>
-                    </select>
+                    <label for="tgl_merk">AWAL</label>
+                    <input type="text" name="awal" class="form-control" placeholder="tulis bulan - tanggal (ex: 00-00)">
+                </div>
+                <div class="form-group">
+                    <label for="tgl_merk">AKHIR</label>
+                    <input type="text" name="akhir" class="form-control" placeholder="tulis bulan - tanggal (ex: 00-00)">
                 </div>
                 <button type="submit" class="btn btn-info btn-block">Lihat</button>
                 <input type="hidden" name="_form" value="true">
@@ -26,39 +23,33 @@
         <div class="panel-body">
         <?php if (isset($_POST['_form']) AND $_POST['_form'] == 'true'): ?>
             <table class="table table-condensed">
-                <?php $qry = $sql . "WHERE id_order=$_POST[id_order]"; ?>
+                <thead>
+                    <tr>
+                        <th>ID ORDER</th>
+                        <th>NAMA PELANGGAN</th>
+                        <th>TANGGAL ORDER</th>
+                        <th>TANGGAL JATUH TEMPO</th>
+                        <th>ALAMAT PENGIRIMAN</th>
+                        <th>TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php $qry = "SELECT * FROM `order` o LEFT JOIN pelanggan p ON o.id_pelanggan=p.id_pelanggan WHERE o.tgl_order BETWEEN '2016-$_POST[awal]' AND '2016-$_POST[akhir]'"; ?>
                 <?php if ($query = $koneksi->query($qry)): ?>
                     <?php if ($query->num_rows): ?>
                         <?php while ($order = $query->fetch_assoc()): ?>
-                            <tbody>
-                                <tr>
-                                    <th>ID ORDER</th>
-                                    <td><?=$order['id_order']?></td>
-                                </tr>
-                                <tr>
-                                    <th>NAMA PELANGGAN</th>
-                                    <td><?=$order['nama']?></td>
-                                </tr>
-                                <tr>
-                                    <th>TANGGAL ORDER</th>
-                                    <td><?=$order['tgl_order']?></td>
-                                </tr>
-                                <tr>
-                                    <th>TANGGAL JATUH TEMPO</th>
-                                    <td><?=$order['tgl_jatuh_tempo']?></td>
-                                </tr>
-                                <tr>
-                                    <th>ALAMAT PENGIRIMAN</th>
-                                    <td><?=$order['alamat_pengiriman']?></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4"><b>TOTAL</b></td>
-                                    <td><b>Rp.<?=$order['total_bayar']?>,-</b></td>
-                                </tr>
-                            </tbody>
+                            <tr>
+                                <td><?=$order['id_order']?></td>
+                                <td><?=$order['nama']?></td>
+                                <td><?=$order['tgl_order']?></td>
+                                <td><?=$order['tgl_tempo_order']?></td>
+                                <td><?=$order['alamat_pengiriman']?></td>
+                                <td><b>Rp.<?=$order['total_bayar']?>,-</b></td>
+                            </tr>
                         <?php endwhile ?>
                     <?php endif ?>
                 <?php endif ?>
+                </tbody>
             </table>
         <?php else: ?>
         <h3>PERIODE BELUM DIPILIH...</h3>

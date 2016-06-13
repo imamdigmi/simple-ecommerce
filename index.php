@@ -26,7 +26,7 @@ require_once "config.php";
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="?halaman=home">Home <span class="sr-only">(current)</span></a></li>
                         <?php if (!isset($_SESSION['is_pelanggan'])): ?>
-                        <li><a href="?halaman=pendaftaran">Pendaftaran</a></li>
+                            <li><a href="?halaman=pendaftaran">Pendaftaran</a></li>
                         <?php endif ?>
                         <li><a href="?halaman=buku_tamu">Buku Tamu</a></li>
                         <?php if (isset($_SESSION['is_pelanggan'])): ?>
