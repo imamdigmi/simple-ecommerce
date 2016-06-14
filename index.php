@@ -30,6 +30,7 @@ require_once "config.php";
                         <?php endif ?>
                         <li><a href="?halaman=buku_tamu">Buku Tamu</a></li>
                         <?php if (isset($_SESSION['is_pelanggan'])): ?>
+                            <li><a href="?halaman=profile">Profil</a></li>
                             <li><a href="logout.php">Logout</a></li>
                         <?php endif ?>
                         <?php if (!isset($_SESSION['is_pelanggan'])): ?>
@@ -50,6 +51,7 @@ require_once "config.php";
                     case 'checkout': $halaman = "checkout"; break;
                     case 'selesai': $halaman = "selesai"; break;
                     case 'konfirmasi': $halaman = "konfirmasi"; break;
+                    case 'profile': $halaman = "profile"; break;
                     default: $halaman = "home"; break;
                 }
                 include "halaman/" . $halaman . ".php";
