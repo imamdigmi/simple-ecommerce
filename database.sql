@@ -19,8 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `sif`
 --
-CREATE DATABASE IF NOT EXISTS `sif` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `sif`;
+CREATE DATABASE IF NOT EXISTS `e-commerce` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `e-commerce`;
 
 -- --------------------------------------------------------
 
