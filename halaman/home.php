@@ -1,6 +1,6 @@
 <form action="" method="POST">
     <div class="row">
-        <?php if($query = $koneksi->query("SELECT * FROM barang")): ?>
+        <?php if($query = $koneksi->query("SELECT * FROM barang WHERE stok != 0")): ?>
             <?php while($barang = $query->fetch_array()): ?>
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">

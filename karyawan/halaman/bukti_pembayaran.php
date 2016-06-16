@@ -1,21 +1,31 @@
 <?php 
 if (isset($_POST['_form']) AND $_POST['_form'] == 'true') {
+    $koneksi->query("INSERT INTO konfirmasi VALUES(NULL, $_POST[_id], NOW(), '". date('Y-m-d', strtotime('+1 week')) ."')");
     $koneksi->query("UPDATE `order` SET status_konfirmasi='sudah' WHERE id_order=$_POST[_id]");
-    $sql = "INSERT INTO konfirmasi VALUES(NULL, $_POST[_id], NOW(), '". date('Y-m-d', strtotime('+1 week')) ."')";
-    if ($koneksi->query($sql)) {
-        echo "
-            <script>
-                alert('Konfirmasi Berhasil!');
-                window.location='?halaman=home';
-            </script>
-        ";
-    } else {
-        echo "
-            <script>
-                alert('Konfirmasi Gagal!');
-                window.location='?halaman=home';
-            </script>
-        ";
+    $stok = 0;
+    if ($qry1 = $koneksi->query("SELECT * FROM order_detail WHERE id_order=$_POST[_id]")) {
+        while ($order = $qry1->fetch_assoc()) {
+            if ($qry2 = $koneksi->query("SELECT * FROM barang WHERE id_barang=$order[id_barang]")) {
+                while ($data = $qry2->fetch_assoc()) {
+                    $stok = $data['stok'] - $order['jumlah'];
+                    if ($koneksi->query("UPDATE barang SET stok=$stok WHERE id_barang=$data[id_barang]")) {
+                        echo "
+                            <script>
+                                alert('Konfirmasi Berhasil!');
+                                window.location='?halaman=home';
+                            </script>
+                        ";
+                    } else {
+                        echo "
+                            <script>
+                                alert('Konfirmasi Gagal!');
+                                window.location='?halaman=home';
+                            </script>
+                        ";
+                    }
+                }
+            }
+        }
     }
 }
 ?>

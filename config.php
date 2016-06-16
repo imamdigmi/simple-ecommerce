@@ -1,7 +1,7 @@
 <?php
 
 // Membuat koneksi ke database
-$koneksi = new Mysqli("localhost", "root", "idiot", "uni-solo");
+$koneksi = new Mysqli("localhost", "root", "idiot", "e-commerce");
 
 // Jika koneksi gagal
 if (!$koneksi) {

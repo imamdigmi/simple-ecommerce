@@ -37,6 +37,7 @@
                 <?php $qry = "SELECT * FROM `order` o LEFT JOIN pelanggan p ON o.id_pelanggan=p.id_pelanggan WHERE o.tgl_order BETWEEN '2016-$_POST[awal]' AND '2016-$_POST[akhir]'"; ?>
                 <?php if ($query = $koneksi->query($qry)): ?>
                     <?php if ($query->num_rows): ?>
+                        <?php $total = 0 ?>
                         <?php while ($order = $query->fetch_assoc()): ?>
                             <tr>
                                 <td><?=$order['id_order']?></td>
@@ -44,9 +45,14 @@
                                 <td><?=$order['tgl_order']?></td>
                                 <td><?=$order['tgl_tempo_order']?></td>
                                 <td><?=$order['alamat_pengiriman']?></td>
-                                <td><b>Rp.<?=$order['total_bayar']?>,-</b></td>
+                                <td>Rp.<?=number_format($order['total_bayar'])?>,-</td>
                             </tr>
+                            <?php $total += $order['total_bayar'] ?>
                         <?php endwhile ?>
+                        <tr>
+                            <th colspan="5">TOTAL PENJUALAN</th>
+                            <td><b>Rp.<?=number_format($total)?>,-</b></td>
+                        </tr>
                     <?php endif ?>
                 <?php endif ?>
                 </tbody>

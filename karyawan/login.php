@@ -7,7 +7,7 @@ if (isset($_POST['on']) AND $_POST['on'] == 'true') {
             session_start();
             while ($data = $query->fetch_array()) {
                 $_SESSION['is_karyawan'] = true;
-                $_SESSION['nama'] = $data['nama'];
+                $_SESSION['nama_karyawan'] = $data['nama'];
                 $_SESSION['email'] = $data['email'];
             }
             header('location: index.php');

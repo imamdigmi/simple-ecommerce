@@ -28,31 +28,33 @@ if (!isset($_SESSION['is_karyawan'])) {
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">UNI SOLO</a>
+                    <a class="navbar-brand" href="#">UNI SOLO - <span style="color: red;"><?=strtoupper($_SESSION['nama_karyawan'])?></span></a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="index.php">Home</a></li>
-                        <li><a href="?halaman=karyawan">Karyawan</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu Data <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="?halaman=barang">Daftar Barang</a></li>
-                                <li><a href="?halaman=merk">Daftar Merk</a></li>
+                                <li><a href="?halaman=barang">Barang</a></li>
+                                <li><a href="?halaman=merk">Merk</a></li>
                                 <li><a href="?halaman=ongkos_kirim">Ongkos Kirim</a></li>
                                 <li><a href="?halaman=pelanggan">Pelanggan</a></li>
+                                <li><a href="?halaman=buku_tamu">Buku Tamu</a></li>
+                                <li class="divider"></li>
+                                <li><a href="?halaman=karyawan">Karyawan</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Laporan - Laporan<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Laporan - Laporan <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="?halaman=lap_pernota">Pernota</a></li>
                                 <li><a href="?halaman=lap_perperiode">Perperiode</a></li>
                                 <li><a href="?halaman=lap_status_order">Status Order</a></li>
                                 <li><a href="?halaman=lap_barang_permerk">Barang Permerk</a></li>
+                                <li><a href="?halaman=lap_barang_terlaris">Barang Terlaris</a></li>
                             </ul>
                         </li>
-                        <li><a href="?halaman=buku_tamu">Buku Tamu</a></li>
                         <li><a href="logout.php">Keluar</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
@@ -109,6 +111,9 @@ if (!isset($_SESSION['is_karyawan'])) {
                 break;
                 case 'bukti_pembayaran':
                     $halaman = "bukti_pembayaran";
+                break;
+                case 'lap_barang_terlaris':
+                    $halaman = "lap_barang_terlaris";
                 break;
                 default: $halaman = "home"; break;
             }

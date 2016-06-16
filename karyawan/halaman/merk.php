@@ -5,14 +5,14 @@ if (isset($_POST['form']) AND $_POST['form'] == 'true') {
         echo "
             <script>
                 alert('Berhasil diinput!');
-                window.location='?halaman=barang';
+                window.location='?halaman=merk';
             </script>
         ";
     } else {
         echo "
             <script>
                 alert('Gagal diinput!');
-                window.location='?halaman=barang';
+                window.location='?halaman=merk';
             </script>
         ";
     }
