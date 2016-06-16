@@ -1,5 +1,5 @@
 <div class="panel panel-info">
-    <div class="panel-heading"><h3 class="text-center">Detail Order</h3></div>
+    <div class="panel-heading"><h3 class="text-center">Keranjang Belanja</h3></div>
     <div class="panel-body">
         <table class="table table-condensed table-hover">
             <thead>
@@ -27,9 +27,9 @@
                                     <td><?=number_format($order['harga'] * $val)?></td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="?halaman=detail_order&action=plus&id_barang=<?=$key?>" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-plus"></i></a>
-                                            <a href="?halaman=detail_order&action=min&id_barang=<?=$key?>" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-minus"></i></a>
-                                            <a href="?halaman=detail_order&action=del&id_barang=<?=$key?>" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></a>
+                                            <a href="?halaman=cart&action=plus&id_barang=<?=$key?>" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-plus"></i></a>
+                                            <a href="?halaman=cart&action=min&id_barang=<?=$key?>" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-minus"></i></a>
+                                            <a href="?halaman=cart&action=del&id_barang=<?=$key?>" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></a>
                                         </div>
                                     </td>
                                 </tr>

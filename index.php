@@ -47,7 +47,7 @@ require_once "config.php";
                     case 'detail_barang': $halaman = "detail_barang"; break;
                     case 'buku_tamu': $halaman = "buku_tamu"; break;
                     case 'pendaftaran': $halaman = "pendaftaran"; break;
-                    case 'detail_order': $halaman = "detail_order"; break;
+                    case 'cart': $halaman = "cart"; break;
                     case 'checkout': $halaman = "checkout"; break;
                     case 'selesai': $halaman = "selesai"; break;
                     case 'konfirmasi': $halaman = "konfirmasi"; break;

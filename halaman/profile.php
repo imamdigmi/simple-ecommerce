@@ -32,14 +32,18 @@
                             <th>No</th>
                             <th>Total Bayar</th>
                             <th>Status Konfirmasi</th>
+                            <th>Tanggal Order</th>
+                            <th>Tanggal Tempo Order</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php while ($data = $query->fetch_assoc()): ?>
                             <tr>
                                 <td><?=$no++?></td>
-                                <td><?=$data['total_bayar']?></td>
+                                <td>Rp.<?=number_format($data['total_bayar'])?>,-</td>
                                 <td><?=$data['status_konfirmasi']?></td>
+                                <td><?=$data['tgl_order']?></td>
+                                <td><?=$data['tgl_tempo_order']?></td>
                             </tr>
                         <?php endwhile ?>
                     </tbody>

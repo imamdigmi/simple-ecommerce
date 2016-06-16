@@ -18,7 +18,7 @@
                     <?php endif ?>
                 <?php endforeach ?>
                 <tr>
-                    <td colspan="3"><a href="?halaman=detail_order" class="btn btn-primary btn-xs pull-right">Detail <i class="glyphicon glyphicon-chevron-right"></i></a></td>
+                    <td colspan="3"><a href="?halaman=cart" class="btn btn-primary btn-xs pull-right">Detail <i class="glyphicon glyphicon-chevron-right"></i></a></td>
                 </tr>
                 </table>
             <?php else: ?>
