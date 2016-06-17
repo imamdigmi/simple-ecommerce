@@ -39,6 +39,19 @@ CREATE TABLE IF NOT EXISTS `barang` (
   `gambar` varchar(100) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `barang`
+--
+
+INSERT INTO `barang` (`id_barang`, `id_merk`, `nama_barang`, `harga`, `warna`, `jenis_lengan`, `stok`, `gambar`) VALUES
+(1, 1, 'Batik Mega Mendung', 170000, 'Biru', 'pendek', 5, '16062016204515.jpg'),
+(2, 2, 'Batik Keraton', 320000, 'Merah', 'panjang', 17, '16062016204720.jpg'),
+(3, 3, 'Cokelat Bunga-bunga', 190000, 'Cokelat', 'pendek', 16, '16062016204813.jpg'),
+(4, 4, 'Batik Pinrang', 420000, 'Merah', 'panjang', 39, '16062016204907.jpg'),
+(5, 5, 'Batik Minang Kabau', 500000, 'Cokelat', 'pendek', 8, '16062016204955.jpg'),
+(6, 2, 'Corak bunga-bunga', 170000, 'Merah', 'pendek', 5, '16062016205035.jpg'),
+(7, 6, 'Baru Lagi', 90000, 'Merah', 'pendek', 40, '17062016104927.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -66,6 +79,13 @@ CREATE TABLE IF NOT EXISTS `karyawan` (
   `password` varchar(60) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `karyawan`
+--
+
+INSERT INTO `karyawan` (`id_karyawan`, `nama`, `email`, `password`) VALUES
+(1, 'karyawan', 'karyawan@gmail.com', '9e014682c94e0f2cc834bf7348bda428');
+
 -- --------------------------------------------------------
 
 --
@@ -90,6 +110,18 @@ CREATE TABLE IF NOT EXISTS `merk` (
   `nama_merk` varchar(20) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `merk`
+--
+
+INSERT INTO `merk` (`id_merk`, `nama_merk`) VALUES
+(1, 'Batik Cirebon'),
+(2, 'Batik Jogja'),
+(3, 'Batik Solo'),
+(4, 'Batik Sulawesi'),
+(5, 'Batik Minang'),
+(6, 'Merk Baru');
+
 -- --------------------------------------------------------
 
 --
@@ -101,6 +133,18 @@ CREATE TABLE IF NOT EXISTS `ongkos_kirim` (
   `kota` varchar(10) NOT NULL,
   `tarif` int(6) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ongkos_kirim`
+--
+
+INSERT INTO `ongkos_kirim` (`id_ongkos_kirim`, `kota`, `tarif`) VALUES
+(1, 'Yogyakarta', 12000),
+(2, 'Solo', 7000),
+(3, 'Magelang', 13000),
+(4, 'Klaten', 13000),
+(5, 'Jakarta', 21000),
+(6, 'Bekasi', 23000);
 
 -- --------------------------------------------------------
 
@@ -149,6 +193,14 @@ CREATE TABLE IF NOT EXISTS `pelanggan` (
   `alamat` varchar(50) NOT NULL,
   `password` varchar(60) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pelanggan`
+--
+
+INSERT INTO `pelanggan` (`id_pelanggan`, `nama`, `email`, `telpon`, `alamat`, `password`) VALUES
+(1, 'sanusi', 'sanusi@gmail.com', '081221788921', 'Jl. Kaliurang KM 14 DS Lodadi RT 12 RW 01 No 201', 'd8420ee1c07a593566004a1dd88dd207'),
+(2, 'oza', 'oza@gmail.com', '081255664788', 'Jl. Condong Catur RT 07 RW 01 No 102', '6231957517f0dee07453546e772c3c9b');
 
 --
 -- Indexes for dumped tables
