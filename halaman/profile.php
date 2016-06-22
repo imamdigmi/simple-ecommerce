@@ -34,6 +34,7 @@
                             <th>Status Konfirmasi</th>
                             <th>Tanggal Order</th>
                             <th>Tanggal Tempo Order</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

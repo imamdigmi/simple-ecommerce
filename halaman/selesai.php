@@ -25,6 +25,37 @@
                 </tr>
             </thead>
         </table>
+        <hr>
+        <h3>Detail</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>NO</th>
+                    <th>Nama Barang</th>
+                    <th>Jumlah</th>
+                    <th>Harga</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $total = 0; $no = 1;?>
+                <?php if ($query = $koneksi->query("SELECT o.*, b.* FROM order_detail o LEFT JOIN barang b ON o.id_barang=b.id_barang WHERE id_order=".$_SESSION['order']['id_order'])): ?>
+                    <?php while ($detail = $query->fetch_assoc()): ?>
+                        <tr>
+                            <td><?=$no++?></td>
+                            <td><?=$detail['nama_barang']?></td>
+                            <td><?=$detail['jumlah']?></td>
+                            <td><?=number_format($detail['harga']*$detail['jumlah'])?></td>
+                        </tr>
+                        <?php $total += $detail['harga']; ?>
+                    <?php endwhile ?>
+                <?php endif ?>
+                <tr>
+                    <th colspan="3">TOTAL</th>
+                    <td><strong>Rp.<?=number_format($_SESSION['order']['total'])?>,-</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
         <h3>Terimakasih</h3>
         <p>
             Transaksi pembelian anda telah berhasil<br>

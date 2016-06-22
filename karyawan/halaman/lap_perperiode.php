@@ -1,4 +1,14 @@
-<div class="col-md-3">
+<?php 
+if (isset($_POST['_form']) AND $_POST['_form'] == 'true') {
+    $qry = "SELECT * FROM `order` o LEFT JOIN pelanggan p ON o.id_pelanggan=p.id_pelanggan WHERE o.tgl_order BETWEEN '2016-$_POST[awal]' AND '2016-$_POST[akhir]'";
+    if ($query = $koneksi->query($qry)) {
+        if ($query->num_rows){
+            $total = 0;
+        }
+    }
+}
+?>
+<div class="col-md-3 hidden-print">
     <div class="panel panel-info">
         <div class="panel-heading"><h3 class="text-center">PERIODE</h3></div>
         <div class="panel-body">
@@ -19,9 +29,9 @@
 </div>
 <div class="col-md-9">
     <div class="panel panel-info">
-        <div class="panel-heading"><h3 class="text-center">LAPORAN ORDER PERPERIODE</h3></div>
+        <div class="panel-heading"><h3 class="text-center">LAPORAN ORDER PERPERIODE : <?=(isset($total)) ? '2016-'.$_POST['awal'].' s/d 2016-'.$_POST['akhir'] : '...'?></h3></div>
         <div class="panel-body">
-        <?php if (isset($_POST['_form']) AND $_POST['_form'] == 'true'): ?>
+        <?php if (isset($total)): ?>
             <table class="table table-condensed">
                 <thead>
                     <tr>
@@ -34,32 +44,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                <?php $qry = "SELECT * FROM `order` o LEFT JOIN pelanggan p ON o.id_pelanggan=p.id_pelanggan WHERE o.tgl_order BETWEEN '2016-$_POST[awal]' AND '2016-$_POST[akhir]'"; ?>
-                <?php if ($query = $koneksi->query($qry)): ?>
-                    <?php if ($query->num_rows): ?>
-                        <?php $total = 0 ?>
-                        <?php while ($order = $query->fetch_assoc()): ?>
-                            <tr>
-                                <td><?=$order['id_order']?></td>
-                                <td><?=$order['nama']?></td>
-                                <td><?=$order['tgl_order']?></td>
-                                <td><?=$order['tgl_tempo_order']?></td>
-                                <td><?=$order['alamat_pengiriman']?></td>
-                                <td>Rp.<?=number_format($order['total_bayar'])?>,-</td>
-                            </tr>
-                            <?php $total += $order['total_bayar'] ?>
-                        <?php endwhile ?>
+                    <?php while ($data = $query->fetch_assoc()): ?>
                         <tr>
-                            <th colspan="5">TOTAL PENJUALAN</th>
-                            <td><b>Rp.<?=number_format($total)?>,-</b></td>
+                            <td><?=$data['id_order']?></td>
+                            <td><?=$data['nama']?></td>
+                            <td><?=$data['tgl_order']?></td>
+                            <td><?=$data['tgl_tempo_order']?></td>
+                            <td><?=$data['alamat_pengiriman']?></td>
+                            <td>Rp.<?=number_format($data['total_bayar'])?>,-</td>
                         </tr>
-                    <?php endif ?>
-                <?php endif ?>
+                        <?php $total += $data['total_bayar'] ?>
+                    <?php endwhile ?>
+                    <tr>
+                        <th colspan="5">TOTAL PENJUALAN</th>
+                        <td><b>Rp.<?=number_format($total)?>,-</b></td>
+                    </tr>
                 </tbody>
             </table>
         <?php else: ?>
-        <h3>PERIODE BELUM DIPILIH...</h3>
+            <h3>PERIODE BELUM DIPILIH...</h3>
         <?php endif ?>
+        </div>
+        <div class="panel-footer hidden-print ">
+            <a onClick="window.print();return false" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i></a>
         </div>
     </div>
 </div>

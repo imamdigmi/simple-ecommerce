@@ -28,7 +28,7 @@ if ($_GET['action'] === 'delete') {
     ";
 }
 ?>
-<div class="col-md-4">
+<div class="col-md-4 hidden-print">
     <div class="panel panel-warning">
         <div class="panel-heading"><h3 class="text-center">UPDATE MERK</h3></div>
         <div class="panel-body">
@@ -57,7 +57,7 @@ if ($_GET['action'] === 'delete') {
                     <tr>
                         <th>No</th>
                         <th>Merk</th>
-                        <th></th>
+                        <th class="hidden-print"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,7 +67,7 @@ if ($_GET['action'] === 'delete') {
                         <tr>
                             <td><?php echo $no++; ?></td>
                             <td><?=$merk['nama_merk']?></td>
-                            <td>
+                            <td class="hidden-print">
                                 <div class="btn-group">
                                     <a href="?halaman=merk&action=update&id=<?=$merk['id_merk']?>" class="btn btn-warning btn-xs">Edit</a>
                                     <a href="?halaman=merk&action=delete&id=<?=$merk['id_merk']?>" class="btn btn-danger btn-xs">Hapus</a>
@@ -78,6 +78,9 @@ if ($_GET['action'] === 'delete') {
                     <?php endif ?>
                 </tbody>
             </table>
+        </div>
+        <div class="panel-footer hidden-print ">
+            <a onClick="window.print();return false" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i></a>
         </div>
     </div>
 </div>

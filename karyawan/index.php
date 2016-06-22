@@ -50,7 +50,9 @@ if (!isset($_SESSION['is_karyawan'])) {
                             <ul class="dropdown-menu">
                                 <li><a href="?halaman=lap_pernota">Pernota</a></li>
                                 <li><a href="?halaman=lap_perperiode">Perperiode</a></li>
-                                <li><a href="?halaman=lap_status_order">Status Order</a></li>
+                                <li><a href="?halaman=lap_konfirmasi">Konfirmasi Order</a></li>
+                                <li><a href="?halaman=lap_order_terkirim">Order Terkirim</a></li>
+                                <li><a href="?halaman=lap_order_belum_terkirim">Order Belum Terkirim</a></li>
                                 <li><a href="?halaman=lap_barang_permerk">Barang Permerk</a></li>
                                 <li><a href="?halaman=lap_barang_terlaris">Barang Terlaris</a></li>
                             </ul>
@@ -106,14 +108,20 @@ if (!isset($_SESSION['is_karyawan'])) {
                 case 'lap_barang_permerk':
                     $halaman = "lap_barang_permerk";
                 break;
-                case 'lap_status_order':
-                    $halaman = "lap_status_order";
+                case 'lap_order_terkirim':
+                    $halaman = "lap_order_terkirim";
+                break;
+                case 'lap_order_belum_terkirim':
+                    $halaman = "lap_order_belum_terkirim";
                 break;
                 case 'bukti_pembayaran':
                     $halaman = "bukti_pembayaran";
                 break;
                 case 'lap_barang_terlaris':
                     $halaman = "lap_barang_terlaris";
+                break;
+                case 'lap_konfirmasi':
+                    $halaman = "lap_konfirmasi";
                 break;
                 default: $halaman = "home"; break;
             }

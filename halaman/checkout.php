@@ -37,6 +37,7 @@ if (isset($_POST['_form']) AND $_POST['_form'] == 'true') {
         unset($_SESSION['barang']);
         $_SESSION['order']['id_order'] = $order['id_order'];
         $_SESSION['order']['total_bayar'] = $total_bayar;
+        $_SESSION['order']['total'] = $_POST['_total'];
         $_SESSION['order']['alamat_pengiriman'] = $_POST['alamat_pengiriman'];
         $_SESSION['order']['kota'] = $ongkir['kota'];
         $_SESSION['order']['tarif'] = $ongkir['tarif'];
@@ -57,7 +58,7 @@ if (isset($_POST['_form']) AND $_POST['_form'] == 'true') {
 }
 ?>
 <div class="panel panel-info">
-    <div class="panel-heading"><h3 class="text-center">Checkout Order</h3></div>
+    <div class="panel-heading"><h3 class="text-center">Order</h3></div>
     <div class="panel-body">
         <form action="<?=$_SERVER['REQUEST_URI']?>" method="POST">
             <div class="form-group">
@@ -79,7 +80,7 @@ if (isset($_POST['_form']) AND $_POST['_form'] == 'true') {
                 <label>Tanggal Jatuh Tempo</label>
                 <input type="text" class="form-control" disabled="on" value="<?=date('d-m-Y', strtotime('+1 week'))?>">
             </div>
-            <button type="submit" class="btn btn-info btn-block">Checkout!</button>
+            <button type="submit" class="btn btn-info btn-block">Bayar!</button>
             <input type="hidden" name="_form" value="true">
             <input type="hidden" name="_total" value="<?=$_GET['total']?>">
             <input type="hidden" name="_tgl_order" value="<?=date('Y-m-d')?>">

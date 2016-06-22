@@ -59,7 +59,7 @@
     <div class="panel-footer">
         <td class="btn-group">
             <a href="?halaman=home" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i> Lanjut Belanja</a>
-            <a href="?halaman=checkout&total=<?=$total?>" class="btn btn-primary pull-right">Checkout <i class="glyphicon glyphicon-chevron-right"></i></a>
+            <a href="?halaman=checkout&total=<?=$total?>" class="btn btn-primary pull-right">Bayar <i class="glyphicon glyphicon-chevron-right"></i></a>
         </td>
     </div>
 </div>
