@@ -19,6 +19,9 @@ if (isset($_GET['halaman'])) {
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
         case 'add':
+            if ( ! isset($_SESSION['is_pelanggan'])) {
+                echo "<script>alert('Harus Login Dulu!');window.location='login.php?ref=detail_order';</script>";
+            }
             if (isset($_GET['id_barang'])) {
                 $id = $_GET['id_barang'];
                 if (isset($_SESSION['barang'][$id])) {
@@ -31,8 +34,12 @@ if (isset($_GET['action'])) {
         case 'plus':
             if (isset($_GET['id_barang'])) {
                 $id = $_GET['id_barang'];
-                if (isset($_SESSION['barang'][$id])) {
-                    $_SESSION['barang'][$id] += 1;
+                if (checkStok($id, 1)) {
+                    if (isset($_SESSION['barang'][$id])) {
+                        $_SESSION['barang'][$id] += 1;
+                    }
+                } else {
+                    echo "<script>alert('Maaf, Stok tidak mencukupi');window.location='?halaman=cart';</script>";
                 }
             }
         break;
@@ -40,7 +47,11 @@ if (isset($_GET['action'])) {
             if (isset($_GET['id_barang'])) {
                 $id = $_GET['id_barang'];
                 if (isset($_SESSION['barang'][$id])) {
-                    $_SESSION['barang'][$id] -= 1;
+                    if ($_SESSION['barang'][$id] == 1) {
+                        unset($_SESSION['barang'][$id]);
+                    } else {
+                        $_SESSION['barang'][$id] -= 1;
+                    }
                 }
             }
         break;
@@ -60,5 +71,27 @@ if (isset($_GET['action'])) {
                 unset($_SESSION['barang']);
             }
         break;
+    }
+}
+
+// Check stok
+function checkStok($id, $va) {
+    $c = new Mysqli("mysql.idhostinger.com", "u680616758_uni", "12345678", "u680616758_uni");
+    if ($query = $c->query("SELECT stok FROM barang WHERE id_barang = $id")) {
+        $data = $query->fetch_assoc();
+        $a = $data['stok'] - $_SESSION['barang'][$id];
+        if ($a == 0) {
+            return false;
+        } else {
+            $b = $va + $_SESSION['barang'][$id];
+            $c = $data['stok'] - $b;
+            if ($c < 0) {
+                return false;
+            } else if ($c == 0) {
+                return true;
+            } else if ($c > 0) {
+                return true;
+            }
+        }
     }
 }

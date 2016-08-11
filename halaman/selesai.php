@@ -63,10 +63,10 @@
             <strong>(0986-01-025805-53-8 a/n TOKO UNI)</strong> untuk menyelesaikan pembayaran.
         </p>
         <p>
-            Jika anda sudah melakukan transfer silahkan anda melakukan konfirmasi pembayaran dengan menekan tombol <i><b>Konfirmasi</b></i> dibawah ini.
+            Jika anda sudah melakukan transfer silahkan anda melakukan konfirmasi pembayaran dengan mengunjungi halaman profil akun anda lalu tekan tombol <i><b>Konfirmasi</b></i>.
         </p>
     </div>
     <div class="panel-footer">
-        <a href="?halaman=konfirmasi&id_order=<?=$_SESSION['order']['id_order']?>" class="btn btn-primary btn-sm">Konfirmasi</a>
+        <a href="?halaman=profile" class="btn btn-primary btn-sm">Lihat Daftar Order</a>
     </div>
 </div>

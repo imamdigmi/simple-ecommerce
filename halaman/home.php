@@ -10,13 +10,13 @@
                             <h5>
                                 Rp. <?=$barang['harga']?> ,-
                                 <div class="btn-group">
-                                    <button class="btn btn-default btn-xs" disabled="on">Stok</button>
-                                    <button class="btn btn-info btn-xs" disabled="on"><?=$barang['stok']?></button>
+                                    <a class="btn btn-default btn-xs disabled">Stok</a>
+                                    <a class="btn btn-info btn-xs disabled"><?=$barang['stok']?></a>
                                 </div>
                             </h5>
                             <p>
                                 <div class="btn-group">
-                                    <a href="?action=add&id_barang=<?=$barang['id_barang']?>" class="btn btn-primary btn-sm" role="button">Order</a>
+                                    <a href="?action=add&id_barang=<?=$barang['id_barang']?>" class="btn btn-primary btn-sm<?=(isset($_SESSION['barang'][$barang['id_barang']])) ? ' disabled' : ''?>" role="button">Order</a>
                                     <a href="?halaman=detail_barang&id=<?=$barang['id_barang']?>" class="btn btn-info btn-sm" role="button">Detail</a>
                                 </div>
                             </p>

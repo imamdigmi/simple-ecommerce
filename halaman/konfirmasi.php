@@ -1,6 +1,7 @@
 <?php 
 if (isset($_POST['_form']) AND $_POST['_form'] == 'true') {
-    $file_ext = strtolower(end(explode('.', $_FILES['bukti']['name'])));
+    $file = explode('.', $_FILES['bukti']['name']);
+    $file_ext = strtolower(end($file));
     $gambar = date('dmYHis').'.'.$file_ext;
     move_uploaded_file($_FILES['bukti']['tmp_name'], 'bukti/'.$gambar);
     $sql = "UPDATE `order` SET bukti_pembayaran='$gambar' WHERE id_order=$_POST[_id_order]";

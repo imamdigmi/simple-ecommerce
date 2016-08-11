@@ -11,12 +11,7 @@ if (isset($_POST['_form']) AND $_POST['_form'] == 'true') {
                 $_SESSION['nama'] = $data['nama'];
                 $_SESSION['email'] = $data['email'];
             }
-            if (isset($_GET['ref'])) {
-                $halaman = '?halaman=' . $_GET['ref'];
-            } else {
-                $halaman = '';
-            }
-            header('location: index.php' . $halaman);
+            header('location: index.php');
         } else {
             echo "Email / Password tidak sesuai!";
         }

@@ -1,3 +1,12 @@
+<?php 
+if (isset($_POST) && isset($_POST['add']) <> '') {
+    if (checkStok($_POST['id_barang'], $_POST['add'])) {
+        $_SESSION['barang'][$_POST['id_barang']] += $_POST['add'];
+    } else {
+        echo "<script>alert('Maaf, Stok tidak mencukupi');window.location='?halaman=cart';</script>";
+    }
+}
+?>
 <div class="panel panel-info">
     <div class="panel-heading"><h3 class="text-center">Keranjang Belanja</h3></div>
     <div class="panel-body">
@@ -9,6 +18,7 @@
                     <th>Jumlah</th>
                     <th>Harga Satuan</th>
                     <th>Sub Total</th>
+                    <th>Tambah</th>
                     <th>Opsi</th>
                 </tr>
             </thead>
@@ -25,6 +35,14 @@
                                     <td><?=number_format($val)?></td>
                                     <td><?=number_format($order['harga'])?></td>
                                     <td><?=number_format($order['harga'] * $val)?></td>
+                                    <td>
+                                        <form action="http://uni-solo.hol.es/index.php?halaman=cart" class="form-inline" method="POST">
+                                            <div class="form-group-sm">
+                                                <input type="text" class="form-control" name="add" style="width: 50px" placeholder="...">
+                                                <input type="hidden" name="id_barang" value="<?=$key?>">
+                                            </div>
+                                        </form>
+                                    </td>
                                     <td>
                                         <div class="btn-group">
                                             <a href="?halaman=cart&action=plus&id_barang=<?=$key?>" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-plus"></i></a>

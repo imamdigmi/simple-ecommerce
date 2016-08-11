@@ -1,13 +1,4 @@
 <?php
-if (!isset($_SESSION['is_pelanggan'])) {
-    echo "
-        <script>
-            alert('Harus Login Dulu!');
-            window.location='login.php?ref=detail_order';
-        </script>
-    ";
-}
-
 if (isset($_POST['_form']) AND $_POST['_form'] == 'true') {
     $query = $koneksi->query("SELECT * FROM ongkos_kirim WHERE id_ongkos_kirim=$_POST[id_ongkos_kirim]");
     $ongkir = $query->fetch_assoc();
@@ -78,13 +69,13 @@ if (isset($_POST['_form']) AND $_POST['_form'] == 'true') {
             </div>
             <div class="form-group">
                 <label>Tanggal Jatuh Tempo</label>
-                <input type="text" class="form-control" disabled="on" value="<?=date('d-m-Y', strtotime('+1 week'))?>">
+                <input type="text" class="form-control" disabled="on" value="<?=date('d-m-Y', strtotime('+1 day'))?>">
             </div>
             <button type="submit" class="btn btn-info btn-block">Bayar!</button>
             <input type="hidden" name="_form" value="true">
             <input type="hidden" name="_total" value="<?=$_GET['total']?>">
             <input type="hidden" name="_tgl_order" value="<?=date('Y-m-d')?>">
-            <input type="hidden" name="_tgl_tempo_order" value="<?=date('Y-m-d', strtotime('+1 week'))?>">
+            <input type="hidden" name="_tgl_tempo_order" value="<?=date('Y-m-d', strtotime('+1 day'))?>">
         </form>
     </div>
 </div>

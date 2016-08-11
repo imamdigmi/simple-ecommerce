@@ -12,12 +12,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $sql = "SELECT m.nama_merk, b.nama_barang, o.jumlah
-                                  FROM barang b 
-                                    JOIN merk m ON m.id_merk=b.id_merk 
-                                    JOIN order_detail o ON o.id_barang=b.id_barang
-                                  GROUP BY b.id_barang
-                                  ORDER BY o.jumlah DESC"; ?>
+                    <?php $sql = "SELECT *
+                                  FROM merk m 
+                                    JOIN barang b ON m.id_merk=b.id_merk 
+                                    JOIN order_detail d ON d.id_barang=b.id_barang
+                                    JOIN `order` o ON o.id_order=d.id_order
+                                  ORDER BY d.jumlah DESC, b.nama_barang";
+                    ?>
                     <?php if($query = $koneksi->query($sql)): ?>
                         <?php $no = 1; ?>
                         <?php while($data = $query->fetch_array()): ?>

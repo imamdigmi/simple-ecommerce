@@ -8,7 +8,8 @@ if (isset($_POST['_form']) AND $_POST['_form'] == 'true') {
             jenis_lengan='$_POST[jenis_lengan]',
             stok='$_POST[stok]'";
     if ($_FILES['gambar']['name'] !== '') {
-        $file_ext = strtolower(end(explode('.', $_FILES['gambar']['name'])));
+        $file = explode('.', $_FILES['gambar']['name']);
+        $file_ext = strtolower(end($file));
         $gambar = date('dmYHis').'.'.$file_ext;
         move_uploaded_file($_FILES['gambar']['tmp_name'], '../barang/'.$gambar);
         unlink('../barang/'.$_POST['_gambar']);
@@ -115,7 +116,7 @@ if (isset($_GET['action']) AND $_GET['action'] == 'delete') {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if($query = $koneksi->query("SELECT `barang`.*, `merk`.`nama_merk` FROM `barang` LEFT JOIN `merk` ON `barang`.`id_barang`=`merk`.`id_merk`")): ?>
+                    <?php if($query = $koneksi->query("SELECT * FROM merk m JOIN barang b ON m.id_merk=b.id_merk")): ?>
                         <?php $no = 1; ?>
                         <?php while($barang = $query->fetch_array()): ?>
                         <tr>

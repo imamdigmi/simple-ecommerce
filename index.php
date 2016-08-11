@@ -45,6 +45,7 @@ require_once "config.php";
               <?php
                 switch ($halaman) {
                     case 'detail_barang': $halaman = "detail_barang"; break;
+                    case 'detail_order': $halaman = "detail_order"; break;
                     case 'buku_tamu': $halaman = "buku_tamu"; break;
                     case 'pendaftaran': $halaman = "pendaftaran"; break;
                     case 'cart': $halaman = "cart"; break;

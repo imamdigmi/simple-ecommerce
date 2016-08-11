@@ -45,6 +45,14 @@
                                 <td><?=$data['status_konfirmasi']?></td>
                                 <td><?=$data['tgl_order']?></td>
                                 <td><?=$data['tgl_tempo_order']?></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="?halaman=detail_order&id_order=<?= $data['id_order'] ?>" class="btn btn-primary btn-xs">Detail</a>
+                                        <?php if ($data['status_konfirmasi'] == 'belum' ): ?>
+                                            <a href="?halaman=konfirmasi&id_order=<?= $data['id_order'] ?>" class="btn btn-success btn-xs">Konfirmasi</a>
+                                        <?php endif ?>
+                                    </div>
+                                </td>
                             </tr>
                         <?php endwhile ?>
                     </tbody>

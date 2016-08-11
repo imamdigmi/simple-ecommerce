@@ -1,6 +1,7 @@
 <?php 
 if (isset($_POST['form']) AND $_POST['form'] == 'true') {
-    $file_ext = strtolower(end(explode('.', $_FILES['gambar']['name'])));
+    $file = explode('.', $_FILES['gambar']['name']);
+    $file_ext = strtolower(end($file));
     $gambar = date('dmYHis').'.'.$file_ext;
     move_uploaded_file($_FILES['gambar']['tmp_name'], '../barang/'.$gambar);
     $sql = "INSERT INTO `barang` VALUES(
@@ -106,7 +107,7 @@ if (isset($_GET['action']) AND $_GET['action'] == 'delete') {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if($query = $koneksi->query("SELECT `barang`.*, `merk`.* FROM `barang` LEFT JOIN `merk` ON `barang`.`id_barang`=`merk`.`id_merk`")): ?>
+                    <?php if($query = $koneksi->query("SELECT * FROM merk m JOIN barang b ON m.id_merk=b.id_merk")): ?>
                         <?php $no = 1; ?>
                         <?php while($barang = $query->fetch_array()): ?>
                         <tr>

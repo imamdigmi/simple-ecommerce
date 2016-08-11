@@ -37,7 +37,7 @@ if (isset($_POST['on']) AND $_POST['on'] == 'true') {
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <div class="panel panel-primary">
-                <div class="panel-heading"><h3 class="text-center">LOGIN KARYAWAN</h3></div>
+                <div class="panel-heading"><h3 class="text-center">LOGIN</h3></div>
                 <div class="panel-body">
                     <form action="login.php" method="POST">
                         <div class="form-group">
